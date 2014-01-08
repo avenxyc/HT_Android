@@ -25,7 +25,7 @@ public class CameraActivity extends Activity {
 	    displayCode.setTextSize(40);
 	    displayCode.setText(message);
 	    
-		setContentView(R.layout.activity_camera);
+		setContentView(displayCode);
 		// Show the Up button in the action bar.
 		setupActionBar();
 	}

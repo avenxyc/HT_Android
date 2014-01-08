@@ -3,6 +3,7 @@ package com.aven.ht_android;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
@@ -26,7 +27,6 @@ public class MainActivity extends Activity {
 
 	public void launchCamera (View view){
 		 Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-	     intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
 	     startActivityForResult(intent, 0);
 	}
 	
@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
 	            
 	        } else if (resultCode == RESULT_CANCELED) {
 	            // Handle cancel
+	        	Log.i("fail", "the barcode scanner failed to fetch");
 	        }
 	    }
 	}
