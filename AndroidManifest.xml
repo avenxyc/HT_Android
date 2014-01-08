@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.aven.ht_android.CameraActivity"
+            android:label="@string/title_activity_camera"
+            android:parentActivityName="com.aven.ht_android.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.aven.ht_android.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
