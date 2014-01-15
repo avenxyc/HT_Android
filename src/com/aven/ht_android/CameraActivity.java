@@ -19,15 +19,16 @@ public class CameraActivity extends Activity {
 		// Get the message from the intent
 	    Intent intent = getIntent();
 	    String message = intent.getStringExtra(MainActivity.result);
-	    
-	    //Create a textview
-	    TextView displayCode = new TextView(this);
-	    displayCode.setTextSize(40);
-	    displayCode.setText(message);
-	    
-		setContentView(displayCode);
+	     
+		setContentView(R.layout.activity_camera);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		
+		//Create a textview
+		TextView displayCode = (TextView)findViewById(R.id.viewtext);
+	    displayCode.setText(message);
+		
+		
 	}
 
 	/**

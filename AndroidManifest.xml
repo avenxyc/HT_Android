@@ -6,7 +6,10 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="19" />
+    
+    <!--  Internet Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" /> 
 
     <application
         android:allowBackup="true"
@@ -31,5 +34,7 @@
                 android:value="com.aven.ht_android.MainActivity" />
         </activity>
     </application>
+    
+    
 
 </manifest>
