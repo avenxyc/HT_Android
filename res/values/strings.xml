@@ -3,10 +3,12 @@
 
     <string name="app_name">HT_android</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="defaultText">Your UPC code will be displayed here.</string>
     <string name="camera">Camera</string>
     <string name="title_activity_camera">Camera</string>
     <string name="databasetest">Database</string>
     <string name="get_item_info">Search</string>
+    <string name="title_activity_item_detail">Item_detail</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

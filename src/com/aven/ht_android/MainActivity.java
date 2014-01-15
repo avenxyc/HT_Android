@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
 	    if (requestCode == 0) {
 	        if (resultCode == RESULT_OK) {
 	            String contents = intent.getStringExtra("SCAN_RESULT");
-	            String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+	            //String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
 
 	            Intent passValue = new Intent(this, CameraActivity.class);
 	            passValue.putExtra(result, contents);

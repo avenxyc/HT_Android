@@ -7,9 +7,9 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
-    
-    <!--  Internet Permissions -->
-    <uses-permission android:name="android.permission.INTERNET" /> 
+
+    <!-- Internet Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -33,8 +33,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.aven.ht_android.MainActivity" />
         </activity>
+        <activity
+            android:name="com.aven.ht_android.ItemDetail"
+            android:label="@string/title_activity_item_detail" >
+        </activity>
     </application>
-    
-    
 
 </manifest>
