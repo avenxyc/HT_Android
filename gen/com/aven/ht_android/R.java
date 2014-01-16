@@ -48,8 +48,11 @@ public final class R {
         public static final int defaultText=0x7f050002;
         public static final int get_item_info=0x7f050006;
 <<<<<<< HEAD
+<<<<<<< HEAD
         public static final int hello_world=0x7f050008;
         public static final int returnvalue=0x7f050009;
+=======
+>>>>>>> 3704c7afdb51014ab64f7cfcdea63ffab5b2cf43
 =======
 >>>>>>> 3704c7afdb51014ab64f7cfcdea63ffab5b2cf43
         public static final int title_activity_camera=0x7f050004;
