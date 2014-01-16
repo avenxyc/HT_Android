@@ -48,6 +48,7 @@ public final class R {
         public static final int defaultText=0x7f050002;
         public static final int get_item_info=0x7f050006;
         public static final int hello_world=0x7f050008;
+        public static final int returnvalue=0x7f050009;
         public static final int title_activity_camera=0x7f050004;
         public static final int title_activity_item_detail=0x7f050007;
     }

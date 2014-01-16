@@ -1,5 +1,12 @@
 package com.aven.ht_android;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -8,9 +15,20 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class CameraActivity extends Activity {
+	
+	//Default query url
+	private static String basic_url = "http://falcon.acadiau.ca/~112574x/HT/HT_android_connection.php";
+	
+	//Define message
+	public final static String msg = "message";
+	Button searchButton;
+	
+	JSONParser jParser = new JSONParser();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +36,7 @@ public class CameraActivity extends Activity {
 		
 		// Get the message from the intent
 	    Intent intent = getIntent();
-	    String message = intent.getStringExtra(MainActivity.result);
+	    final String message = intent.getStringExtra(MainActivity.result);
 	     
 		setContentView(R.layout.activity_camera);
 		// Show the Up button in the action bar.
@@ -26,7 +44,28 @@ public class CameraActivity extends Activity {
 		
 		//Create a textview
 		TextView displayCode = (TextView)findViewById(R.id.viewtext);
-	    displayCode.setText(message);
+	    displayCode.setText(message);	
+	    
+	    searchButton = (Button)findViewById(R.id.searchBtn);
+	    
+	    searchButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				//TODO
+				Intent i = new Intent(getApplicationContext(), ItemDetail.class);
+				i.putExtra(msg, message);
+				startActivity(i);
+				
+				String url = basic_url + "?upccode=" + message;
+				
+				// Building Parameters
+				List<NameValuePair> params = new ArrayList<NameValuePair>();
+				// getting JSON string from URL
+				JSONObject json = jParser.makeHttpRequest(url, "GET", params);
+			
+			}
+		});
 		
 		
 	}

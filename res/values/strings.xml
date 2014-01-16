@@ -10,5 +10,6 @@
     <string name="get_item_info">Search</string>
     <string name="title_activity_item_detail">Item_detail</string>
     <string name="hello_world">Hello world!</string>
+    <string name="returnvalue"></string>
 
 </resources>
