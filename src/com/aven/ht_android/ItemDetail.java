@@ -11,8 +11,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 public class ItemDetail extends Activity {
-	//Default query url
-	private static String basic_url = "http://falcon.acadiau.ca/~112574x/HT/HT_android_connection.php";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +22,7 @@ public class ItemDetail extends Activity {
 		Intent i = getIntent();
 		String message = i.getStringExtra(CameraActivity.msg);
 		
-		TextView t = (TextView)findViewById(R.id.);
+		TextView t = (TextView)findViewById(R.id.returnvalue);
 		t.setText(message);
 		
 		

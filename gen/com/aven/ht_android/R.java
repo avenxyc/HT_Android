@@ -24,10 +24,11 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080004;
+        public static final int action_settings=0x7f080005;
         public static final int button1=0x7f080001;
-        public static final int button2=0x7f080003;
-        public static final int textView1=0x7f080002;
+        public static final int button2=0x7f080004;
+        public static final int returnvalue=0x7f080002;
+        public static final int textView1=0x7f080003;
         public static final int viewtext=0x7f080000;
     }
     public static final class layout {
@@ -47,14 +48,8 @@ public final class R {
         public static final int databasetest=0x7f050005;
         public static final int defaultText=0x7f050002;
         public static final int get_item_info=0x7f050006;
-<<<<<<< HEAD
-<<<<<<< HEAD
         public static final int hello_world=0x7f050008;
         public static final int returnvalue=0x7f050009;
-=======
->>>>>>> 3704c7afdb51014ab64f7cfcdea63ffab5b2cf43
-=======
->>>>>>> 3704c7afdb51014ab64f7cfcdea63ffab5b2cf43
         public static final int title_activity_camera=0x7f050004;
         public static final int title_activity_item_detail=0x7f050007;
     }
