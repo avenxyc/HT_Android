@@ -1,23 +1,26 @@
 package com.aven.ht_android;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-import org.apache.http.NameValuePair;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+public interface OnTaskCompleteListener { 
+    void onTaskComplete(String result); 
+}
 
 public class CameraActivity extends Activity {
 	
@@ -30,6 +33,10 @@ public class CameraActivity extends Activity {
 	
 	JSONParser jParser = new JSONParser();
 
+	
+	
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,23 +53,42 @@ public class CameraActivity extends Activity {
 		TextView displayCode = (TextView)findViewById(R.id.viewtext);
 	    displayCode.setText(message);	
 	    
+
+	    
 	    searchButton = (Button)findViewById(R.id.searchBtn);
 	    
 	    searchButton.setOnClickListener(new View.OnClickListener() {
-			
+	
 			@Override
 			public void onClick(View v) {
 				//TODO
 				Intent i = new Intent(getApplicationContext(), ItemDetail.class);
 				i.putExtra(msg, message);
+				
+				
+				String url = basic_url + "?upccode=";
+				
+				Log.e("mtest", "here");
+				
+				
+				AsyncTask<String, Void, JSONObject> re = new RetreiveFeedTask().execute(url, message);
+				
+				try {
+					JSONObject jsonObj = re.get();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					
+				//JSONObject re = retreive.getJason();
+				int a =1;
+				
+			
+				
 				startActivity(i);
-				
-				String url = basic_url + "?upccode=" + message;
-				
-				// Building Parameters
-				List<NameValuePair> params = new ArrayList<NameValuePair>();
-				// getting JSON string from URL
-				JSONObject json = jParser.makeHttpRequest(url, "GET", params);
 			
 			}
 		});

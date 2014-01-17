@@ -22,7 +22,7 @@ public class ItemDetail extends Activity {
 		Intent i = getIntent();
 		String message = i.getStringExtra(CameraActivity.msg);
 		
-		TextView t = (TextView)findViewById(R.id.returnvalue);
+		TextView t = (TextView)findViewById(R.id.upccode);
 		t.setText(message);
 		
 		
