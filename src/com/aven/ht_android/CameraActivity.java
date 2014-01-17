@@ -18,9 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public interface OnTaskCompleteListener { 
-    void onTaskComplete(String result); 
-}
+
 
 public class CameraActivity extends Activity {
 	
