@@ -3,6 +3,7 @@ package com.aven.ht_android;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpResponse;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.TargetApi;
@@ -71,7 +72,7 @@ public class CameraActivity extends Activity {
 				
 				
 				
-				
+				//inner class
 				class MyRetreiveFeedTask extends AsyncTask<String, Void, JSONObject> {
 					private Exception exception;
 					public JSONObject json;
@@ -79,8 +80,14 @@ public class CameraActivity extends Activity {
 					
 					protected void onPostExecute(JSONObject result){
 						Log.e("mtest","on finish");
-						TextView displayCode = (TextView)findViewById(R.id.viewtext);
-						displayCode.setText("Succeed!");
+						TextView productName = (TextView)findViewById(R.id.product_name);
+						try {
+							productName.setText(result.getString("product_name"));
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
 					}
 
 					@Override
