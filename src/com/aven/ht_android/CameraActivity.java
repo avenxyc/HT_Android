@@ -68,29 +68,54 @@ public class CameraActivity extends Activity {
 				String url = basic_url + "?upccode=";
 				
 				Log.e("mtest", "here");
-
-				//new MyRetreiveFeedTask().execute(url, message);
 				
-				RetreiveFeedTask aTask = new RetreiveFeedTask();
 				
-				aTask.setListener(new RetreiveFeedTask.MyAsyncTaskListener() {
-				       @Override
-				       void onPreExecuteConcluded() {
-				           // gui stuff
-				       }
+				
+				
+				class MyRetreiveFeedTask extends AsyncTask<String, Void, JSONObject> {
+					private Exception exception;
+					public JSONObject json;
+					
+					
+					protected void onPostExecute(JSONObject result){
+						Log.e("mtest","on finish");
+						TextView displayCode = (TextView)findViewById(R.id.viewtext);
+						displayCode.setText("Succeed!");
+					}
 
-				       @Override
-				       void onPostExecuteConcluded(String result) {
-				           // gui stuff
-				       }
-				    });
+					@Override
+					protected JSONObject doInBackground(String... params) {
+						try {
+				            
+							// getting JSON string from URL
+							json = JSONParser.makeHttpRequest(params[0], "GET", params[1]);
+							// check your log for json response
+							Log.d("Single Product Details", json.toString());
+							
+							return json;
+							
+							
+							
+				        } catch (Exception e) {
+				            this.exception = e;
+				            return null;
+				        }
+					}
+
+					
+				}
+
+				new MyRetreiveFeedTask().execute(url, message);
+				
+				//MyRetreiveFeedTask aTask = new MyRetreiveFeedTask();
+				
 					
 				//JSONObject re = retreive.getJason();
 				int a =1;
 				
 			
 				
-				startActivity(i);
+				//startActivity(i);
 			
 			}
 		});
