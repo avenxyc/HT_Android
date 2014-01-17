@@ -2,6 +2,7 @@ package com.aven.ht_android;
 
 import java.util.concurrent.ExecutionException;
 
+import org.apache.http.HttpResponse;
 import org.json.JSONObject;
 
 import android.annotation.TargetApi;
@@ -67,19 +68,22 @@ public class CameraActivity extends Activity {
 				String url = basic_url + "?upccode=";
 				
 				Log.e("mtest", "here");
+
+				//new MyRetreiveFeedTask().execute(url, message);
 				
+				RetreiveFeedTask aTask = new RetreiveFeedTask();
 				
-				AsyncTask<String, Void, JSONObject> re = new RetreiveFeedTask().execute(url, message);
-				
-				try {
-					JSONObject jsonObj = re.get();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				aTask.setListener(new RetreiveFeedTask.MyAsyncTaskListener() {
+				       @Override
+				       void onPreExecuteConcluded() {
+				           // gui stuff
+				       }
+
+				       @Override
+				       void onPostExecuteConcluded(String result) {
+				           // gui stuff
+				       }
+				    });
 					
 				//JSONObject re = retreive.getJason();
 				int a =1;
