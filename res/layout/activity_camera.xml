@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +13,17 @@
         android:id="@+id/viewtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/defaultText" />
+        />
+    <TextView
+        android:id="@+id/product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
     <Button
         android:id="@+id/searchBtn"
@@ -24,4 +35,4 @@
         android:text="@string/get_item_info"
         android:textAlignment="center" />
 
-</RelativeLayout>
+</LinearLayout>
