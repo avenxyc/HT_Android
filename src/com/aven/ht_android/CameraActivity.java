@@ -1,5 +1,11 @@
 package com.aven.ht_android;
 
+<<<<<<< HEAD
+=======
+import java.util.concurrent.ExecutionException;
+
+import org.apache.http.HttpResponse;
+>>>>>>> 3ab583d60202899d9c9e92ef67d5403cc63238ae
 import org.json.JSONException;
 import org.json.JSONObject;
 
