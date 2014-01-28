@@ -11,5 +11,14 @@
     <string name="title_activity_item_detail">Item_detail</string>
     <string name="hello_world">Hello world!</string>
     <string name="returnvalue"></string>
+    <string-array name="Region">
+        <item>Cape Breton</item>
+        <item>Eastern</item>
+        <item>HRM</item>
+        <item>Northern</item>
+        <item>South Shore</item>
+        <item>Valley</item>
+        <item>Western</item>
+    </string-array>
 
 </resources>

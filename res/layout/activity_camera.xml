@@ -14,8 +14,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
+     <TextView
+        android:id="@+id/Region_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <Spinner
+    android:id="@+id/Region"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    	 />
+    
     <TextView
         android:id="@+id/product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/total_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/last_updated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/company_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />

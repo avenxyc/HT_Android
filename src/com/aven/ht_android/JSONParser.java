@@ -59,7 +59,7 @@ public class JSONParser {
                 //String paramString = URLEncodedUtils.format(params, "utf-8");
                 
                 //TODO
-                params = "3213";
+                params = "321321";
                 url += params;
                 HttpGet httpGet = new HttpGet(url);
 

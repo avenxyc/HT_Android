@@ -1,11 +1,6 @@
 package com.aven.ht_android;
 
-<<<<<<< HEAD
-=======
-import java.util.concurrent.ExecutionException;
 
-import org.apache.http.HttpResponse;
->>>>>>> 3ab583d60202899d9c9e92ef67d5403cc63238ae
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,7 +15,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 
@@ -55,6 +52,15 @@ public class CameraActivity extends Activity {
 		//Create a textview
 		TextView displayCode = (TextView)findViewById(R.id.viewtext);
 	    displayCode.setText(message);	
+	    
+	    Spinner spinner = (Spinner) findViewById(R.id.Region);
+	    // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+ 	         R.array.Region, android.R.layout.simple_spinner_item);
+	    // Specify the layout to use when the list of choices appears
+	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	    // Apply the adapter to the spinner
+	    spinner.setAdapter(adapter);
 	    
 
 	    
@@ -121,7 +127,6 @@ public class CameraActivity extends Activity {
 				
 					
 				//JSONObject re = retreive.getJason();
-				int a =1;
 				
 			
 				
