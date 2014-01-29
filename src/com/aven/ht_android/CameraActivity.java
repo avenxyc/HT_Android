@@ -1,6 +1,9 @@
 package com.aven.ht_android;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,10 +18,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 
@@ -30,6 +38,10 @@ public class CameraActivity extends Activity {
 	//Define message
 	public final static String msg = "message";
 	Button searchButton;
+	ListView list;
+    TextView cname;
+    TextView weight;
+    ArrayList<HashMap<String, String>> oslist = new ArrayList<HashMap<String, String>>();
 	
 	JSONParser jParser = new JSONParser();
 
@@ -53,10 +65,10 @@ public class CameraActivity extends Activity {
 		TextView displayCode = (TextView)findViewById(R.id.viewtext);
 	    displayCode.setText(message);	
 	    
-	    Spinner spinner = (Spinner) findViewById(R.id.Region);
+	    Spinner spinner = (Spinner) findViewById(R.id.region);
 	    // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
- 	         R.array.Region, android.R.layout.simple_spinner_item);
+ 	         R.array.region, android.R.layout.simple_spinner_item);
 	    // Specify the layout to use when the list of choices appears
 	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	    // Apply the adapter to the spinner
@@ -89,7 +101,40 @@ public class CameraActivity extends Activity {
 					
 					protected void onPostExecute(JSONObject result){
 						Log.e("mtest","on finish");
-						TextView productName = (TextView)findViewById(R.id.product_name);
+						try {
+							//Storing json in a variable
+							String product_name = json.getString("product_name");
+							String weight = json.getString("weight");
+							String total_weight = json.getString("total_weight");
+							String cname = json.getString("cname");
+							
+							//Adding value Hashmap Key => value
+							HashMap<String, String> item = new HashMap<String, String>();
+							item.put(cname, cname);
+							item.put(weight, weight);
+							oslist.add(item);
+							list=(ListView)findViewById(R.id.item_detail);
+							ListAdapter adapter = new SimpleAdapter(CameraActivity.this, oslist,
+									R.layout.activity_item_detail,
+									new String[] {cname, weight}, new int[] {
+									R.id.cname, R.id.weight});
+							list.setAdapter(adapter);
+							list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		                        @Override
+		                        public void onItemClick(AdapterView<?> parent, View view,
+		                                                int position, long id) {
+		                            Toast.makeText(CameraActivity.this, "You Clicked at "+oslist.get(+position).get("name"), Toast.LENGTH_SHORT).show();
+		                        }
+		                    });
+						} catch (JSONException e) {
+			                e.printStackTrace();
+			            }
+						
+						
+						
+						
+						
+						/*TextView productName = (TextView)findViewById(R.id.product_name);
 						try {
 							productName.setText(result.getString("product_name"));
 						} catch (JSONException e) {
@@ -97,6 +142,14 @@ public class CameraActivity extends Activity {
 							e.printStackTrace();
 						}
 						
+						TextView weight = (TextView)findViewById(R.id.weight);
+						try {
+							productName.setText(result.getString("weight"));
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						*/
 					}
 
 					@Override
