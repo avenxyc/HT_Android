@@ -18,15 +18,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 
@@ -100,6 +96,9 @@ public class CameraActivity extends Activity {
 					
 					
 					protected void onPostExecute(JSONObject result){
+						
+						
+						
 						Log.e("mtest","on finish");
 						try {
 							//Storing json in a variable
@@ -109,14 +108,22 @@ public class CameraActivity extends Activity {
 							String cname = json.getString("cname");
 							
 							//Adding value Hashmap Key => value
+							list=(ListView)findViewById(R.id.item_detail);
+							String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+							        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+							        "Linux", "OS/2" };
+							    ArrayAdapter<String> adapter = new ArrayAdapter<String>(CameraActivity.this,
+							    		R.layout.item_list, R.id.text1, values);
+							    list.setAdapter(adapter);
+/*							
 							HashMap<String, String> item = new HashMap<String, String>();
-							item.put(cname, cname);
-							item.put(weight, weight);
+							item.put("cname", cname);
+							item.put("weight", weight);
 							oslist.add(item);
 							list=(ListView)findViewById(R.id.item_detail);
 							ListAdapter adapter = new SimpleAdapter(CameraActivity.this, oslist,
 									R.layout.activity_item_detail,
-									new String[] {cname, weight}, new int[] {
+									new String[] {"cname", "weight"}, new int[] {
 									R.id.cname, R.id.weight});
 							list.setAdapter(adapter);
 							list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -125,7 +132,7 @@ public class CameraActivity extends Activity {
 		                                                int position, long id) {
 		                            Toast.makeText(CameraActivity.this, "You Clicked at "+oslist.get(+position).get("name"), Toast.LENGTH_SHORT).show();
 		                        }
-		                    });
+		                    });*/
 						} catch (JSONException e) {
 			                e.printStackTrace();
 			            }
