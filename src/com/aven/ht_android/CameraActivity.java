@@ -4,6 +4,7 @@ package com.aven.ht_android;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,11 +19,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 
@@ -74,8 +79,10 @@ public class CameraActivity extends Activity {
 	    
 	    searchButton = (Button)findViewById(R.id.searchBtn);
 	    
+	    
+	    
+	    
 	    searchButton.setOnClickListener(new View.OnClickListener() {
-	
 			@Override
 			public void onClick(View v) {
 				//TODO
@@ -90,52 +97,48 @@ public class CameraActivity extends Activity {
 				
 				
 				//inner class
-				class MyRetreiveFeedTask extends AsyncTask<String, Void, JSONObject> {
+				class MyRetreiveFeedTask extends AsyncTask<String, Void, JSONArray> {
 					private Exception exception;
-					public JSONObject json;
+					public JSONArray json;
 					
 					
-					protected void onPostExecute(JSONObject result){
+					protected void onPostExecute(JSONArray json){
 						
 						
 						
 						Log.e("mtest","on finish");
 						try {
-							//Storing json in a variable
-							String product_name = json.getString("product_name");
-							String weight = json.getString("weight");
-							String total_weight = json.getString("total_weight");
-							String cname = json.getString("cname");
-							
-							//Adding value Hashmap Key => value
-							list=(ListView)findViewById(R.id.item_detail);
-							String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-							        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-							        "Linux", "OS/2" };
-							    ArrayAdapter<String> adapter = new ArrayAdapter<String>(CameraActivity.this,
-							    		R.layout.item_list, R.id.text1, values);
-							    list.setAdapter(adapter);
-/*							
-							HashMap<String, String> item = new HashMap<String, String>();
-							item.put("cname", cname);
-							item.put("weight", weight);
-							oslist.add(item);
-							list=(ListView)findViewById(R.id.item_detail);
-							ListAdapter adapter = new SimpleAdapter(CameraActivity.this, oslist,
-									R.layout.activity_item_detail,
-									new String[] {"cname", "weight"}, new int[] {
-									R.id.cname, R.id.weight});
-							list.setAdapter(adapter);
-							list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-		                        @Override
-		                        public void onItemClick(AdapterView<?> parent, View view,
-		                                                int position, long id) {
-		                            Toast.makeText(CameraActivity.this, "You Clicked at "+oslist.get(+position).get("name"), Toast.LENGTH_SHORT).show();
-		                        }
-		                    });*/
-						} catch (JSONException e) {
-			                e.printStackTrace();
-			            }
+							//Store json to an array
+							for(int i=0;i<json.length();i++){
+								HashMap<String, String> map = new HashMap<String, String>();
+								JSONObject e = json.getJSONObject(i);
+								//Storing JSON item to a Variable
+								String c_name = "Constituents Name: " + e.getString("cname");
+								
+								//Add value HashMap key => value
+								map.put("cname", c_name );
+								
+								oslist.add(map);
+								
+								
+								list=(ListView)findViewById(R.id.item_detail);
+								ListAdapter adapter = new SimpleAdapter(CameraActivity.this, oslist, 
+										R.layout.item_list, new String[] {"cname"}, new int[] {
+											R.id.cname});
+								list.setAdapter(adapter);
+								list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			    		            @Override
+			    		            public void onItemClick(AdapterView<?> parent, View view,
+			    		                                    int position, long id) {
+			    		                Toast.makeText(CameraActivity.this, "You Clicked at "+oslist.get(+position).get("name"), Toast.LENGTH_SHORT).show();
+
+			    		            }
+								});
+							}
+
+						   } catch (JSONException e) {
+			                   e.printStackTrace();
+			               }
 						
 						
 						
@@ -160,22 +163,13 @@ public class CameraActivity extends Activity {
 					}
 
 					@Override
-					protected JSONObject doInBackground(String... params) {
-						try {
-				            
+					protected JSONArray doInBackground(String... params) {
 							// getting JSON string from URL
 							json = JSONParser.makeHttpRequest(params[0], "GET", params[1]);
 							// check your log for json response
 							Log.d("Single Product Details", json.toString());
 							
-							return json;
-							
-							
-							
-				        } catch (Exception e) {
-				            this.exception = e;
-				            return null;
-				        }
+							return json;		
 					}
 
 					

@@ -5,17 +5,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,7 +20,7 @@ import android.util.Log;
 public class JSONParser {
 
     static InputStream is = null;
-    static JSONObject jObj = null;
+    static JSONArray jArr = null;
     static String json = "";
 
     // constructor
@@ -32,9 +28,9 @@ public class JSONParser {
 
     }
 
-    // function get json from url
+    // function get json_arr from url
     // by making HTTP POST or GET method
-    public static JSONObject makeHttpRequest(String url, String method,
+    public static JSONArray makeHttpRequest(String url, String method,
             String params) {
 
         // Making HTTP request
@@ -88,9 +84,7 @@ public class JSONParser {
             is.close();
             json = sb.toString();
             
-            if(json.length() > 4){
-            	json = json.substring(2, json.length()-2);
-            }
+            
             
         } catch (Exception e) {
             Log.e("Buffer Error", "Error converting result " + e.toString());
@@ -98,13 +92,13 @@ public class JSONParser {
 
         // try parse the string to a JSON object
         try {
-            jObj = new JSONObject(json);
+            jArr = new JSONArray(json);
         } catch (JSONException e) {
             Log.e("JSON Parser", "Error parsing data " + e.toString());
         }
 
         // return JSON String
-        return jObj;
+        return jArr;
 
     }
 }
