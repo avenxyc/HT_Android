@@ -113,27 +113,22 @@ public class CameraActivity extends Activity {
 								HashMap<String, String> map = new HashMap<String, String>();
 								JSONObject e = json.getJSONObject(i);
 								//Storing JSON item to a Variable
-								String c_name = "Constituents Name: " + e.getString("cname");
+								String c_name = e.getString("cname");
+								String p_weight = e.getString("part_weight");
 								
 								//Add value HashMap key => value
 								map.put("cname", c_name );
+								map.put("pweight", p_weight);
 								
 								oslist.add(map);
 								
 								
 								list=(ListView)findViewById(R.id.item_detail);
 								ListAdapter adapter = new SimpleAdapter(CameraActivity.this, oslist, 
-										R.layout.item_list, new String[] {"cname"}, new int[] {
-											R.id.cname});
+										R.layout.item_list, new String[] {"cname","pweight"}, new int[] {
+											R.id.cname, R.id.pweight});
 								list.setAdapter(adapter);
-								list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			    		            @Override
-			    		            public void onItemClick(AdapterView<?> parent, View view,
-			    		                                    int position, long id) {
-			    		                Toast.makeText(CameraActivity.this, "You Clicked at "+oslist.get(+position).get("name"), Toast.LENGTH_SHORT).show();
-
-			    		            }
-								});
+								
 							}
 
 						   } catch (JSONException e) {
