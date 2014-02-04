@@ -1,6 +1,10 @@
 package com.aven.ht_android;
 
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -11,6 +15,8 @@ import org.json.JSONObject;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,15 +25,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 
@@ -57,6 +62,7 @@ public class CameraActivity extends Activity {
 		// Get the message from the intent
 	    Intent intent = getIntent();
 	    final String message = intent.getStringExtra(MainActivity.result);
+	    
 	     
 		setContentView(R.layout.activity_camera);
 		// Show the Up button in the action bar.
@@ -103,8 +109,36 @@ public class CameraActivity extends Activity {
 					
 					
 					protected void onPostExecute(JSONArray json){
+						//Display the product image
+						String url = "http://falcon.acadiau.ca/~112574x/HT/pics/";
+						/*try {
+							  ImageView iv = (ImageView)findViewById(R.id.pimage);
+							  Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(url + message + ".jpg").getContent());
+							  
+							  String testval = url + message + ".jpg";
+							  iv.setImageBitmap(bitmap); 
+							} catch (MalformedURLException e) {
+							  e.printStackTrace();
+							} catch (IOException e) {
+							  e.printStackTrace();
+							}*/
 						
+						//Display item name and weight
+						try {
+							JSONObject info = json.getJSONObject(1);
+							String name = info.getString("product_name");
+							TextView tv = (TextView)findViewById(R.id.item_name);
+							tv.setText(name);
+							
+						} catch (JSONException e1) {
+							e1.printStackTrace();
+						}
 						
+						//Display constituents information
+						HashMap<String, String> title_map = new HashMap<String, String>();
+						title_map.put("cname", "Constituent Name:");
+						title_map.put("classification", "Where to throw:");
+						oslist.add(title_map);
 						
 						Log.e("mtest","on finish");
 						try {
@@ -114,19 +148,19 @@ public class CameraActivity extends Activity {
 								JSONObject e = json.getJSONObject(i);
 								//Storing JSON item to a Variable
 								String c_name = e.getString("cname");
-								String p_weight = e.getString("part_weight");
+								String throw_where = e.getString("classification");
 								
 								//Add value HashMap key => value
 								map.put("cname", c_name );
-								map.put("pweight", p_weight);
+								map.put("classification", throw_where);
 								
 								oslist.add(map);
 								
 								
 								list=(ListView)findViewById(R.id.item_detail);
 								ListAdapter adapter = new SimpleAdapter(CameraActivity.this, oslist, 
-										R.layout.item_list, new String[] {"cname","pweight"}, new int[] {
-											R.id.cname, R.id.pweight});
+										R.layout.item_list, new String[] {"cname","classification"}, new int[] {
+											R.id.cname, R.id.classification});
 								list.setAdapter(adapter);
 								
 							}
@@ -136,25 +170,6 @@ public class CameraActivity extends Activity {
 			               }
 						
 						
-						
-						
-						
-						/*TextView productName = (TextView)findViewById(R.id.product_name);
-						try {
-							productName.setText(result.getString("product_name"));
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						
-						TextView weight = (TextView)findViewById(R.id.weight);
-						try {
-							productName.setText(result.getString("weight"));
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						*/
 					}
 
 					@Override

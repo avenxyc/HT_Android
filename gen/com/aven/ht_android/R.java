@@ -27,22 +27,23 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090010;
-        public static final int button1=0x7f090006;
-        public static final int button2=0x7f090007;
-        public static final int button3=0x7f09000f;
-        public static final int cname=0x7f090008;
-        public static final int editText1=0x7f09000d;
-        public static final int item_detail=0x7f090004;
-        public static final int pweight=0x7f090009;
+        public static final int action_settings=0x7f090011;
+        public static final int button1=0x7f090007;
+        public static final int button2=0x7f090008;
+        public static final int button3=0x7f090010;
+        public static final int classification=0x7f09000a;
+        public static final int cname=0x7f090009;
+        public static final int editText1=0x7f09000e;
+        public static final int item_detail=0x7f090005;
+        public static final int item_name=0x7f090004;
         public static final int region=0x7f090001;
         public static final int region_title=0x7f090002;
         public static final int searchBtn=0x7f090003;
-        public static final int tableLayout1=0x7f09000a;
-        public static final int tableRow1=0x7f09000b;
-        public static final int tableRow2=0x7f09000c;
-        public static final int tableRow3=0x7f09000e;
-        public static final int textView1=0x7f090005;
+        public static final int tableLayout1=0x7f09000b;
+        public static final int tableRow1=0x7f09000c;
+        public static final int tableRow2=0x7f09000d;
+        public static final int tableRow3=0x7f09000f;
+        public static final int textView1=0x7f090006;
         public static final int viewtext=0x7f090000;
     }
     public static final class layout {
