@@ -34,19 +34,16 @@
         android:id="@+id/searchBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="0dp"
         android:text="@string/get_item_info"
         android:textAlignment="center" 
         />
      
-     <!-- <ImageView android:id="@+id/pimage"
+     <ImageView android:id="@+id/pimage"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:contentDescription="@string/hello_world" /> -->
+        android:contentDescription="@string/hello_world" />
      <TextView 
          android:id="@+id/item_name"
          android:layout_width="match_parent"

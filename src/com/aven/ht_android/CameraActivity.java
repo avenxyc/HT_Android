@@ -1,10 +1,7 @@
 package com.aven.ht_android;
 
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -110,7 +107,7 @@ public class CameraActivity extends Activity {
 					
 					protected void onPostExecute(JSONArray json){
 						//Display the product image
-						String url = "http://falcon.acadiau.ca/~112574x/HT/pics/";
+						String img_url = "http://falcon.acadiau.ca/~112574x/HT/pics/" + message + ".jpg";
 						/*try {
 							  ImageView iv = (ImageView)findViewById(R.id.pimage);
 							  Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(url + message + ".jpg").getContent());
@@ -122,6 +119,11 @@ public class CameraActivity extends Activity {
 							} catch (IOException e) {
 							  e.printStackTrace();
 							}*/
+						// show The Image
+						new DownloadImageTask((ImageView) findViewById(R.id.pimage))
+						            .execute(img_url);
+						
+						
 						
 						//Display item name and weight
 						try {
@@ -235,5 +237,31 @@ public class CameraActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+	    ImageView bmImage;
+
+	    public DownloadImageTask(ImageView bmImage) {
+	        this.bmImage = bmImage;
+	    }
+
+	    protected Bitmap doInBackground(String... urls) {
+	        String urldisplay = urls[0];
+	        Bitmap mIcon11 = null;
+	        try {
+	            InputStream in = new java.net.URL(urldisplay).openStream();
+	            mIcon11 = BitmapFactory.decodeStream(in);
+	        } catch (Exception e) {
+	            Log.e("Error", e.getMessage());
+	            e.printStackTrace();
+	        }
+	        return mIcon11;
+	    }
+
+	    protected void onPostExecute(Bitmap result) {
+	        bmImage.setImageBitmap(result);
+	    }
+	}
+	
 
 }
