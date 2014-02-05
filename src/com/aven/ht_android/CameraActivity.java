@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -78,13 +79,16 @@ public class CameraActivity extends Activity {
 	    // Apply the adapter to the spinner
 	    spinner.setAdapter(adapter);
 	    
-
+	    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+	        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+	            String item = (String)parent.getItemAtPosition(pos);	            
+	        }
+	        public void onNothingSelected(AdapterView<?> parent) {
+	        	//TODO
+	        }
+	    });
 	    
 	    searchButton = (Button)findViewById(R.id.searchBtn);
-	    
-	    
-	    
-	    
 	    searchButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -108,18 +112,6 @@ public class CameraActivity extends Activity {
 					protected void onPostExecute(JSONArray json){
 						//Display the product image
 						String img_url = "http://falcon.acadiau.ca/~112574x/HT/pics/" + message + ".jpg";
-						/*try {
-							  ImageView iv = (ImageView)findViewById(R.id.pimage);
-							  Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(url + message + ".jpg").getContent());
-							  
-							  String testval = url + message + ".jpg";
-							  iv.setImageBitmap(bitmap); 
-							} catch (MalformedURLException e) {
-							  e.printStackTrace();
-							} catch (IOException e) {
-							  e.printStackTrace();
-							}*/
-						// show The Image
 						new DownloadImageTask((ImageView) findViewById(R.id.pimage))
 						            .execute(img_url);
 						
@@ -189,14 +181,6 @@ public class CameraActivity extends Activity {
 
 				new MyRetreiveFeedTask().execute(url, message);
 				
-				//MyRetreiveFeedTask aTask = new MyRetreiveFeedTask();
-				
-					
-				//JSONObject re = retreive.getJason();
-				
-			
-				
-				//startActivity(i);
 			
 			}
 		});

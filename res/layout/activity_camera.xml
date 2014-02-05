@@ -42,7 +42,7 @@
      <ImageView android:id="@+id/pimage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:contentDescription="@string/hello_world" />
      <TextView 
          android:id="@+id/item_name"
