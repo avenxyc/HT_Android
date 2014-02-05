@@ -41,6 +41,8 @@ public class CameraActivity extends Activity {
 	
 	//Define message
 	public final static String msg = "message";
+	//Define Region
+	public final static String rgn = "region";
 	Button searchButton;
 	ListView list;
     TextView cname;
@@ -61,14 +63,19 @@ public class CameraActivity extends Activity {
 	    Intent intent = getIntent();
 	    final String message = intent.getStringExtra(MainActivity.result);
 	    
-	     
+	    
+	    //TODO
+		final Intent i = new Intent(getApplicationContext(), ItemList.class);
+		i.putExtra(msg, message);
+		
+		
 		setContentView(R.layout.activity_camera);
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		//Create a textview
+		/*//Create a textview
 		TextView displayCode = (TextView)findViewById(R.id.viewtext);
-	    displayCode.setText(message);	
+	    displayCode.setText("Please choose your region");	*/
 	    
 	    Spinner spinner = (Spinner) findViewById(R.id.region);
 	    // Create an ArrayAdapter using the string array and a default spinner layout
@@ -81,7 +88,8 @@ public class CameraActivity extends Activity {
 	    
 	    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 	        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-	            String item = (String)parent.getItemAtPosition(pos);	            
+	            String region = (String)parent.getItemAtPosition(pos);	  
+	            i.putExtra(rgn, region);
 	        }
 	        public void onNothingSelected(AdapterView<?> parent) {
 	        	//TODO
@@ -92,96 +100,8 @@ public class CameraActivity extends Activity {
 	    searchButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//TODO
-				//Intent i = new Intent(getApplicationContext(), ItemDetail.class);
-				//i.putExtra(msg, message);
+				startActivity(i);
 				
-				
-				String url = basic_url + "?upccode=";
-				
-				Log.e("mtest", "here");
-				
-				
-				
-				//inner class
-				class MyRetreiveFeedTask extends AsyncTask<String, Void, JSONArray> {
-					private Exception exception;
-					public JSONArray json;
-					
-					
-					protected void onPostExecute(JSONArray json){
-						//Display the product image
-						String img_url = "http://falcon.acadiau.ca/~112574x/HT/pics/" + message + ".jpg";
-						new DownloadImageTask((ImageView) findViewById(R.id.pimage))
-						            .execute(img_url);
-						
-						
-						
-						//Display item name and weight
-						try {
-							JSONObject info = json.getJSONObject(1);
-							String name = info.getString("product_name");
-							TextView tv = (TextView)findViewById(R.id.item_name);
-							tv.setText(name);
-							
-						} catch (JSONException e1) {
-							e1.printStackTrace();
-						}
-						
-						//Display constituents information
-						HashMap<String, String> title_map = new HashMap<String, String>();
-						title_map.put("cname", "Constituent Name:");
-						title_map.put("classification", "Where to throw:");
-						oslist.add(title_map);
-						
-						Log.e("mtest","on finish");
-						try {
-							//Store json to an array
-							for(int i=0;i<json.length();i++){
-								HashMap<String, String> map = new HashMap<String, String>();
-								JSONObject e = json.getJSONObject(i);
-								//Storing JSON item to a Variable
-								String c_name = e.getString("cname");
-								String throw_where = e.getString("classification");
-								
-								//Add value HashMap key => value
-								map.put("cname", c_name );
-								map.put("classification", throw_where);
-								
-								oslist.add(map);
-								
-								
-								list=(ListView)findViewById(R.id.item_detail);
-								ListAdapter adapter = new SimpleAdapter(CameraActivity.this, oslist, 
-										R.layout.item_list, new String[] {"cname","classification"}, new int[] {
-											R.id.cname, R.id.classification});
-								list.setAdapter(adapter);
-								
-							}
-
-						   } catch (JSONException e) {
-			                   e.printStackTrace();
-			               }
-						
-						
-					}
-
-					@Override
-					protected JSONArray doInBackground(String... params) {
-							// getting JSON string from URL
-							json = JSONParser.makeHttpRequest(params[0], "GET", params[1]);
-							// check your log for json response
-							Log.d("Single Product Details", json.toString());
-							
-							return json;		
-					}
-
-					
-				}
-
-				new MyRetreiveFeedTask().execute(url, message);
-				
-			
 			}
 		});
 		
@@ -222,30 +142,7 @@ public class CameraActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-	    ImageView bmImage;
-
-	    public DownloadImageTask(ImageView bmImage) {
-	        this.bmImage = bmImage;
-	    }
-
-	    protected Bitmap doInBackground(String... urls) {
-	        String urldisplay = urls[0];
-	        Bitmap mIcon11 = null;
-	        try {
-	            InputStream in = new java.net.URL(urldisplay).openStream();
-	            mIcon11 = BitmapFactory.decodeStream(in);
-	        } catch (Exception e) {
-	            Log.e("Error", e.getMessage());
-	            e.printStackTrace();
-	        }
-	        return mIcon11;
-	    }
-
-	    protected void onPostExecute(Bitmap result) {
-	        bmImage.setImageBitmap(result);
-	    }
-	}
+	
 	
 
 }

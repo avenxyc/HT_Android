@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,42 +6,27 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".CameraActivity" >
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context=".ItemList" >
 
     <TextView
-        android:id="@+id/viewtext"
+        android:id="@+id/upccode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:text="@string/choose_region"
-        android:textStyle="bold"
+        android:padding="0dp"
+        android:layout_margin="0dp"
         />
-
-    <Spinner
-        android:id="@+id/region"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        />
-
-     <TextView
+    
+    <TextView
         android:id="@+id/region_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="0dp"
         android:layout_margin="0dp"
         />
-     
-     <Button
-        android:id="@+id/searchBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
-        android:text="@string/get_item_info"
-        android:textAlignment="center" 
-        />
-     
-     <ImageView android:id="@+id/pimage"
+    
+    <ImageView android:id="@+id/pimage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -64,5 +48,3 @@
         />
 
 </LinearLayout>
-
-

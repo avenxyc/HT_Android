@@ -8,8 +8,9 @@
     <string name="title_activity_camera">Camera</string>
     <string name="databasetest">Database</string>
     <string name="get_item_info">Search</string>
-    <string name="title_activity_item_detail">Item_detail</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="Camera_img_description">Image</string>
+    <string name="choose_region">Please choose your region:</string>
+
     <string-array name="region">
         <item>Cape Breton</item>
         <item>Eastern</item>
@@ -19,5 +20,7 @@
         <item>Valley</item>
         <item>Western</item>
     </string-array>
+
+    <string name="title_activity_item_list">ItemList</string>
 
 </resources>

@@ -33,6 +33,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.aven.ht_android.MainActivity" />
         </activity>
+        <activity
+            android:name="com.aven.ht_android.ItemList"
+            android:label="@string/title_activity_item_list"
+            android:parentActivityName="com.aven.ht_android.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.aven.ht_android.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
