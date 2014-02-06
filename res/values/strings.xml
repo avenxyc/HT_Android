@@ -9,8 +9,7 @@
     <string name="databasetest">Database</string>
     <string name="get_item_info">Search</string>
     <string name="Camera_img_description">Image</string>
-    <string name="choose_region">Please choose your region:</string>
-
+	<string name="choose_region">Please choose your region:</string>
     <string-array name="region">
         <item>Cape Breton</item>
         <item>Eastern</item>
@@ -22,5 +21,6 @@
     </string-array>
 
     <string name="title_activity_item_list">ItemList</string>
+    <string name="recyclability">Recyclability:</string>
 
 </resources>

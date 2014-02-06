@@ -53,16 +53,17 @@ public class ItemList extends Activity {
 	    final String message = intent.getStringExtra(CameraActivity.msg);
 	    final String region = intent.getStringExtra(CameraActivity.rgn);
 	    
+	    
 	    setContentView(R.layout.activity_item_list);
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		//Create a textview
+		/*//Create a textview
 		TextView displayCode = (TextView)findViewById(R.id.upccode);
 	    displayCode.setText(message);
 	    
 	    TextView display_region = (TextView)findViewById(R.id.region_title);
-	    display_region.setText(region);
+	    display_region.setText(region);*/
 	    
 	    String url = basic_url + "?upccode=";
 		
@@ -70,10 +71,17 @@ public class ItemList extends Activity {
 		
 		
 		
-		//inner class
+		//inner class 
 		class MyRetreiveFeedTask extends AsyncTask<String, Void, JSONArray> {
 			private Exception exception;
 			public JSONArray json;
+
+		    //Total recyclable package weight
+		    double recyclable_weight;
+		    //Total package weight
+		    double package_weight;
+		    //Calculated recyclability rate
+		    double recyclability_rate;
 			
 			
 			protected void onPostExecute(JSONArray json){
@@ -86,10 +94,16 @@ public class ItemList extends Activity {
 				
 				//Display item name and weight
 				try {
+					//Get the product name
 					JSONObject info = json.getJSONObject(1);
 					String name = info.getString("product_name");
-					TextView tv = (TextView)findViewById(R.id.item_name);
-					tv.setText(name);
+					TextView tv_item_name = (TextView)findViewById(R.id.item_name);
+					tv_item_name.setText(name);
+					
+					//Get the product weight
+					String weight = info.getString("weight");
+					TextView tv_weight = (TextView)findViewById(R.id.weight);
+					tv_weight.setText(weight + "g/L");
 					
 				} catch (JSONException e1) {
 					e1.printStackTrace();
@@ -110,6 +124,18 @@ public class ItemList extends Activity {
 						//Storing JSON item to a Variable
 						String c_name = e.getString("cname");
 						String throw_where = e.getString("classification");
+						String recyclable = e.getString("classification");
+						double pweight = e.getDouble("part_weight");
+						
+						//Add up to the total recyclable weight
+						if(recyclable.equals("Blue Bag #1: Paper")
+								||recyclable.equals("Blue Bag #2: Recyclables")){
+							recyclable_weight =+ pweight;
+						}
+						
+						//Add up to the total package weight
+						package_weight =+ pweight;
+						
 						
 						//Add value HashMap key => value
 						map.put("cname", c_name );
@@ -125,6 +151,21 @@ public class ItemList extends Activity {
 						list.setAdapter(adapter);
 						
 					}
+					
+					
+					TextView tv_rate = (TextView)findViewById(R.id.recyclability_rate);
+					//Calculate the recyclability result
+					if(package_weight > 0){
+						recyclability_rate = recyclable_weight / package_weight * 100;
+						String S_rate = Double.toString(recyclability_rate);
+						tv_rate.setText(S_rate + "%");
+						 
+					} else {
+						recyclability_rate = 0;
+						String rate_error = "There is some errors here.";
+						tv_rate.setText(rate_error);
+					}
+					
 
 				   } catch (JSONException e) {
 	                   e.printStackTrace();
