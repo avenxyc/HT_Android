@@ -1,34 +1,25 @@
 package com.aven.ht_android;
 
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -41,8 +32,19 @@ public class CameraActivity extends Activity {
 	
 	//Define message
 	public final static String msg = "message";
+	
 	//Define Region
 	public final static String rgn = "region";
+	
+	//Variable that holds region value
+	String rgn_val;
+	
+	//Restored region val
+	String rgn_saved;
+	
+	//Preference name
+	public static final String PREFS_NAME = "MyPrefsFile";
+	//Search Button
 	Button searchButton;
 	ListView list;
     TextView cname;
@@ -76,31 +78,78 @@ public class CameraActivity extends Activity {
 		/*//Create a textview
 		TextView displayCode = (TextView)findViewById(R.id.viewtext);
 	    displayCode.setText("Please choose your region");	*/
+		
+		// Restore preferences
+	    SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+	    rgn_saved = settings.getString("region", "no_value");
+		
+	    //If user has set preference
+	    if(rgn_saved != "no_value"){
+	    	//Create a textview
+			TextView displayCode = (TextView)findViewById(R.id.viewtext);
+		    displayCode.setText("You have chosen the the region: " + rgn_saved);	
+	    } else {
+	    	Spinner spinner = (Spinner) findViewById(R.id.region);
+	    	
+	    	//Change the spinner to visible
+	    	spinner.setVisibility(View.VISIBLE);
+		    
+		    // Create an ArrayAdapter using the string array and a default spinner layout
+	        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+	 	         R.array.region, android.R.layout.simple_spinner_item);
+		    
+	        // Specify the layout to use when the list of choices appears
+		    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		     
+		    // Apply the adapter to the spinner
+		    spinner.setAdapter(adapter);
+		    
+		    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+		        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+		        	rgn_val = (String)parent.getItemAtPosition(pos);	  
+		            i.putExtra(rgn, rgn_val);
+		        }
+		        public void onNothingSelected(AdapterView<?> parent) {
+		        	//Default value would be "Cape Breton"
+		        }
+		    });
+	    }
 	    
-	    Spinner spinner = (Spinner) findViewById(R.id.region);
-	    // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
- 	         R.array.region, android.R.layout.simple_spinner_item);
-	    // Specify the layout to use when the list of choices appears
-	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	    // Apply the adapter to the spinner
-	    spinner.setAdapter(adapter);
 	    
-	    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-	        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-	            String region = (String)parent.getItemAtPosition(pos);	  
-	            i.putExtra(rgn, region);
-	        }
-	        public void onNothingSelected(AdapterView<?> parent) {
-	        	//TODO
-	        }
-	    });
 	    
 	    searchButton = (Button)findViewById(R.id.searchBtn);
 	    searchButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(i);
+				if(rgn_saved == "no_value"){
+					new AlertDialog.Builder(CameraActivity.this)
+				    .setTitle(R.string.region_preference_title)
+				    .setMessage(R.string.region_preference_content)
+				    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+				        public void onClick(DialogInterface dialog, int which) { 
+				        	//Set User preference on region
+				        	SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+				            SharedPreferences.Editor editor = settings.edit();
+				            editor.putString("region", rgn_val );
+				            
+				            // Commit the edits.
+				            editor.commit();
+				        
+				            startActivity(i);
+				        }
+					    })
+				    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+				        public void onClick(DialogInterface dialog, int which) { 
+				        	startActivity(i);
+				        }
+				     })
+				    .setIcon(R.drawable.ic_dialog_alert)
+				    .show();
+				} else {
+					i.putExtra(rgn, rgn_val);
+					startActivity(i);
+				}
+					
 				
 			}
 		});

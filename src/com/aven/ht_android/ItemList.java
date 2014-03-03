@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -149,6 +150,7 @@ public class ItemList extends Activity {
 								R.layout.item_list, new String[] {"cname","classification"}, new int[] {
 									R.id.cname, R.id.classification});
 						list.setAdapter(adapter);
+						list.setVisibility(View.VISIBLE);
 						
 					}
 					
