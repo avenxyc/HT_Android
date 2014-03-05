@@ -11,10 +11,10 @@
 
        
     <ImageView android:id="@+id/pimage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="200dip"
+        android:layout_gravity="center"
         android:contentDescription="@string/Camera_img_description" 
-        android:layout_marginBottom="10dp"
         />
     
    <TextView 
@@ -24,7 +24,8 @@
          android:textSize="22sp"
          android:gravity="center"
          android:textStyle="bold"
-         android:layout_marginBottom="10dp"
+         android:text="@string/product_name"
+         android:layout_marginBottom="3dp"
          />
     
    <TextView
@@ -33,8 +34,7 @@
          android:layout_height="wrap_content"
          android:gravity="center"
          android:textSize="20sp"
-         android:textStyle="bold" 
-         android:layout_marginBottom="10dp"
+         android:layout_marginBottom="3dp"
          />
    
     <TextView 
@@ -43,7 +43,6 @@
          android:layout_height="wrap_content"
          android:textSize="20sp"
          android:gravity="center"
-         android:textStyle="bold"
          android:text="@string/recyclability"
          />
     
@@ -55,6 +54,7 @@
          android:gravity="center"
          android:textStyle="bold"
          android:layout_marginBottom="10dp"
+         android:visibility="gone"
          />
      
     <ListView

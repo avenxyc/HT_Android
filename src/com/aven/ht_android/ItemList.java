@@ -8,10 +8,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-import android.os.AsyncTask;
-import android.os.Bundle;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,12 +32,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.support.v4.app.NavUtils;
-import android.annotation.TargetApi;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Build;
 
 public class ItemList extends Activity {
 	
@@ -142,6 +147,7 @@ public class ItemList extends Activity {
 						map.put("cname", c_name );
 						map.put("classification", throw_where);
 						
+						//Add to the list
 						oslist.add(map);
 						
 						
@@ -155,17 +161,17 @@ public class ItemList extends Activity {
 					}
 					
 					
-					TextView tv_rate = (TextView)findViewById(R.id.recyclability_rate);
+					TextView tv_rate = (TextView)findViewById(R.id.recyclability);
 					//Calculate the recyclability result
 					if(package_weight > 0){
 						recyclability_rate = recyclable_weight / package_weight * 100;
 						String S_rate = Double.toString(recyclability_rate);
-						tv_rate.setText(S_rate + "%");
+						tv_rate.append(S_rate + "%");
 						 
 					} else {
 						recyclability_rate = 0;
 						String rate_error = "There is some errors here.";
-						tv_rate.setText(rate_error);
+						tv_rate.append(rate_error);
 					}
 					
 
@@ -188,8 +194,26 @@ public class ItemList extends Activity {
 
 			
 		}
-
-		new MyRetreiveFeedTask().execute(url, message);
+		
+		
+		
+		//Check network status
+		if(isNetworkAvailable(this))
+		{
+			new MyRetreiveFeedTask().execute(url, message);
+		}else {
+			new AlertDialog.Builder(ItemList.this)
+		    .setTitle(R.string.No_network_connection_title)
+		    .setMessage(R.string.No_network_connection_content)
+		    .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int which) { 
+		        	//Do nothing 
+		        }
+			    })
+		    .setIcon(R.drawable.ic_dialog_alert)
+		    .show();
+		}
+		
 	    
 	}
 
@@ -227,6 +251,22 @@ public class ItemList extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	//Check if network is available
+	public boolean isNetworkAvailable(Context ctx)
+	 {
+	     ConnectivityManager cm = (ConnectivityManager)ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
+	     NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	     if (netInfo != null && netInfo.isConnectedOrConnecting()&& cm.getActiveNetworkInfo().isAvailable()&& cm.getActiveNetworkInfo().isConnected()) 
+	     {
+	         return true;
+	     }
+	     else
+	     {
+	         return false;
+	     }
+	 }
+	
+	//Load image from database
 	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 	    ImageView bmImage;
 

@@ -13,7 +13,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.util.Log;
 
@@ -28,6 +27,7 @@ public class JSONParser {
 
     }
 
+    
     // function get json_arr from url
     // by making HTTP POST or GET method
     public static JSONArray makeHttpRequest(String url, String method,
@@ -49,6 +49,9 @@ public class JSONParser {
                 is = httpEntity.getContent();
 
             }else */
+        	
+        
+        	
         	if(method == "GET"){
                 // request method is GET
                 DefaultHttpClient httpClient = new DefaultHttpClient();

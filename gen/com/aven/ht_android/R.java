@@ -69,21 +69,27 @@ public final class R {
         public static final int main=0x7f080003;
     }
     public static final class string {
-        public static final int Camera_img_description=0x7f050009;
+        public static final int Camera_img_description=0x7f050006;
+        public static final int No_network_connection_content=0x7f05000e;
+        public static final int No_network_connection_title=0x7f05000d;
         public static final int action_settings=0x7f050003;
+        /**  Main Activity 
+         */
         public static final int app_name=0x7f050000;
-        public static final int camera=0x7f050005;
-        public static final int choose_region=0x7f05000a;
-        public static final int databasetest=0x7f050007;
-        public static final int defaultText=0x7f050004;
-        public static final int get_item_info=0x7f050008;
+        public static final int choose_region=0x7f050007;
+        public static final int get_item_info=0x7f050005;
         public static final int introduction_content=0x7f050002;
         public static final int introduction_title=0x7f050001;
-        public static final int recyclability=0x7f05000e;
-        public static final int region_preference_content=0x7f05000c;
-        public static final int region_preference_title=0x7f05000b;
-        public static final int title_activity_camera=0x7f050006;
-        public static final int title_activity_item_list=0x7f05000d;
+        public static final int product_name=0x7f05000c;
+        public static final int recyclability=0x7f05000b;
+        public static final int region_preference_content=0x7f050009;
+        public static final int region_preference_title=0x7f050008;
+        /**  Camera Activity 
+         */
+        public static final int title_activity_camera=0x7f050004;
+        /**  Item List 
+         */
+        public static final int title_activity_item_list=0x7f05000a;
     }
     public static final class style {
         /** 
