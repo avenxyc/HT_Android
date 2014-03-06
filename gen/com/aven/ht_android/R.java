@@ -9,7 +9,13 @@ package com.aven.ht_android;
 
 public final class R {
     public static final class array {
-        public static final int region=0x7f060000;
+        public static final int pref_example_list_titles=0x7f050003;
+        public static final int pref_example_list_values=0x7f050004;
+        public static final int pref_sync_frequency_titles=0x7f050005;
+        public static final int pref_sync_frequency_values=0x7f050006;
+        public static final int region=0x7f050002;
+        public static final int syncFrequency=0x7f050000;
+        public static final int syncFrequencyValues=0x7f050001;
     }
     public static final class attr {
     }
@@ -20,8 +26,8 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
         public static final int ic_dialog_alert=0x7f020000;
@@ -32,28 +38,28 @@ public final class R {
         public static final int search_button_cut=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f090015;
-        public static final int button1=0x7f09000b;
-        public static final int button3=0x7f090014;
-        public static final int classification=0x7f09000d;
-        public static final int cname=0x7f09000c;
-        public static final int editText1=0x7f090012;
-        public static final int introduction_content=0x7f09000a;
-        public static final int introduction_title=0x7f090009;
-        public static final int item_detail=0x7f090008;
-        public static final int item_name=0x7f090004;
-        public static final int pimage=0x7f090003;
-        public static final int recyclability=0x7f090006;
-        public static final int recyclability_rate=0x7f090007;
-        public static final int region=0x7f090001;
-        public static final int searchBtn=0x7f090002;
-        public static final int tableLayout1=0x7f09000e;
-        public static final int tableRow1=0x7f09000f;
-        public static final int tableRow2=0x7f090011;
-        public static final int tableRow3=0x7f090013;
-        public static final int textView1=0x7f090010;
-        public static final int viewtext=0x7f090000;
-        public static final int weight=0x7f090005;
+        public static final int action_settings=0x7f0a0015;
+        public static final int button1=0x7f0a000b;
+        public static final int button3=0x7f0a0014;
+        public static final int classification=0x7f0a000d;
+        public static final int cname=0x7f0a000c;
+        public static final int editText1=0x7f0a0012;
+        public static final int introduction_content=0x7f0a000a;
+        public static final int introduction_title=0x7f0a0009;
+        public static final int item_detail=0x7f0a0008;
+        public static final int item_name=0x7f0a0004;
+        public static final int pimage=0x7f0a0003;
+        public static final int recyclability=0x7f0a0006;
+        public static final int recyclability_rate=0x7f0a0007;
+        public static final int region=0x7f0a0001;
+        public static final int searchBtn=0x7f0a0002;
+        public static final int tableLayout1=0x7f0a000e;
+        public static final int tableRow1=0x7f0a000f;
+        public static final int tableRow2=0x7f0a0011;
+        public static final int tableRow3=0x7f0a0013;
+        public static final int textView1=0x7f0a0010;
+        public static final int viewtext=0x7f0a0000;
+        public static final int weight=0x7f0a0005;
     }
     public static final class layout {
         public static final int activity_camera=0x7f030000;
@@ -63,33 +69,54 @@ public final class R {
         public static final int table_layout=0x7f030004;
     }
     public static final class menu {
-        public static final int camera=0x7f080000;
-        public static final int item_detail=0x7f080001;
-        public static final int item_list=0x7f080002;
-        public static final int main=0x7f080003;
+        public static final int camera=0x7f090000;
+        public static final int item_list=0x7f090001;
+        public static final int main=0x7f090002;
     }
     public static final class string {
-        public static final int Camera_img_description=0x7f050006;
-        public static final int No_network_connection_content=0x7f05000e;
-        public static final int No_network_connection_title=0x7f05000d;
-        public static final int action_settings=0x7f050003;
+        public static final int Camera_img_description=0x7f070006;
+        public static final int No_network_connection_content=0x7f07000e;
+        public static final int No_network_connection_title=0x7f07000d;
+        public static final int action_settings=0x7f070003;
         /**  Main Activity 
          */
-        public static final int app_name=0x7f050000;
-        public static final int choose_region=0x7f050007;
-        public static final int get_item_info=0x7f050005;
-        public static final int introduction_content=0x7f050002;
-        public static final int introduction_title=0x7f050001;
-        public static final int product_name=0x7f05000c;
-        public static final int recyclability=0x7f05000b;
-        public static final int region_preference_content=0x7f050009;
-        public static final int region_preference_title=0x7f050008;
+        public static final int app_name=0x7f070000;
+        public static final int choose_region=0x7f070007;
+        public static final int get_item_info=0x7f070005;
+        public static final int introduction_content=0x7f070002;
+        public static final int introduction_title=0x7f070001;
+        public static final int pref_default_display_name=0x7f070014;
+        public static final int pref_description_social_recommendations=0x7f070012;
+        /**  Example settings for Data & Sync 
+         */
+        public static final int pref_header_data_sync=0x7f070016;
+        /**  Strings related to Settings 
+ Example General settings 
+         */
+        public static final int pref_header_general=0x7f070010;
+        /**  Example settings for Notifications 
+         */
+        public static final int pref_header_notifications=0x7f070019;
+        public static final int pref_ringtone_silent=0x7f07001c;
+        public static final int pref_title_add_friends_to_messages=0x7f070015;
+        public static final int pref_title_display_name=0x7f070013;
+        public static final int pref_title_new_message_notifications=0x7f07001a;
+        public static final int pref_title_ringtone=0x7f07001b;
+        public static final int pref_title_social_recommendations=0x7f070011;
+        public static final int pref_title_sync_frequency=0x7f070017;
+        public static final int pref_title_system_sync_settings=0x7f070018;
+        public static final int pref_title_vibrate=0x7f07001d;
+        public static final int product_name=0x7f07000c;
+        public static final int recyclability=0x7f07000b;
+        public static final int region_preference_content=0x7f070009;
+        public static final int region_preference_title=0x7f070008;
         /**  Camera Activity 
          */
-        public static final int title_activity_camera=0x7f050004;
+        public static final int title_activity_camera=0x7f070004;
         /**  Item List 
          */
-        public static final int title_activity_item_list=0x7f05000a;
+        public static final int title_activity_item_list=0x7f07000a;
+        public static final int title_activity_user_settings=0x7f07000f;
     }
     public static final class style {
         /** 
@@ -113,9 +140,15 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
+    }
+    public static final class xml {
+        public static final int pref_data_sync=0x7f040000;
+        public static final int pref_general=0x7f040001;
+        public static final int pref_headers=0x7f040002;
+        public static final int pref_notification=0x7f040003;
     }
 }

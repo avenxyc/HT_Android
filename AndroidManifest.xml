@@ -10,16 +10,16 @@
 
     <!-- Internet Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
-	<!-- Network status Permissions -->
+    <!-- Network status Permissions -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:screenOrientation="portrait" >
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme" >
         <activity
             android:name="com.aven.ht_android.MainActivity"
             android:label="@string/app_name" >
@@ -44,6 +44,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.aven.ht_android.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.aven.ht_android.UserSettingsActivity"
+            android:label="@string/title_activity_user_settings" >
         </activity>
     </application>
 

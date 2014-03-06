@@ -27,9 +27,6 @@ import android.widget.TextView;
 
 public class CameraActivity extends Activity {
 	
-	//Default query url
-	private static String basic_url = "http://falcon.acadiau.ca/~112574x/HT/HT_android_connection.php";
-	
 	//Define message
 	public final static String msg = "message";
 	

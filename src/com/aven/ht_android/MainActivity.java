@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends Activity {
+	
+	 private static final int RESULT_SETTINGS = 1;
 
 	 public final static String result = "result";
 	@Override
@@ -24,6 +27,20 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+ 
+        case R.id.action_settings:
+            Intent i = new Intent(this, UserSettingsActivity.class);
+            startActivityForResult(i, RESULT_SETTINGS);
+            break;
+ 
+        }
+ 
+        return true;
+    }
 
 	public void launchCamera (View view){
 		 Intent intent = new Intent("com.google.zxing.client.android.SCAN");
@@ -35,7 +52,6 @@ public class MainActivity extends Activity {
 	    if (requestCode == 0) {
 	        if (resultCode == RESULT_OK) {
 	            String contents = intent.getStringExtra("SCAN_RESULT");
-	            //String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
 
 	            Intent passValue = new Intent(this, CameraActivity.class);
 	            passValue.putExtra(result, contents);
@@ -47,4 +63,6 @@ public class MainActivity extends Activity {
 	        }
 	    }
 	}
+	
+	
 }
