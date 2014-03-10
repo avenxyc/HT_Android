@@ -37,6 +37,8 @@ public class ItemList extends Activity {
 	//Default query url
 	private static String basic_url = "http://falcon.acadiau.ca/~112574x/HT/HT_android_connection.php";
 	
+	private static final int RESULT_SETTINGS = 1;
+	
 	ListView list;
     TextView cname;
     TextView weight;
@@ -56,19 +58,14 @@ public class ItemList extends Activity {
 		// Get the message from the intent
 	    Intent intent = getIntent();
 	    final String message = intent.getStringExtra(CameraActivity.msg);
-	    final String region = intent.getStringExtra(CameraActivity.rgn);
+	    //final String region = intent.getStringExtra(CameraActivity.rgn);
 	    
 	    
 	    setContentView(R.layout.activity_item_list);
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		/*//Create a textview
-		TextView displayCode = (TextView)findViewById(R.id.upccode);
-	    displayCode.setText(message);
-	    
-	    TextView display_region = (TextView)findViewById(R.id.region_title);
-	    display_region.setText(region);*/
+		
 	    
 	    String url = basic_url + "?upccode=";
 		
@@ -78,7 +75,7 @@ public class ItemList extends Activity {
 		
 		//inner class 
 		class MyRetreiveFeedTask extends AsyncTask<String, Void, JSONArray> {
-			private Exception exception;
+			//private Exception exception;
 			public JSONArray json;
 
 		    //Total recyclable package weight
@@ -246,6 +243,11 @@ public class ItemList extends Activity {
 			//
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
+			
+		case R.id.action_settings:
+            Intent i = new Intent(this, UserSettingsActivity.class);
+            startActivityForResult(i, RESULT_SETTINGS);
+            break;	
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -265,7 +267,9 @@ public class ItemList extends Activity {
 	     }
 	 }
 	
-	//Load image from database
+	/**
+	 * Load image from database
+	 */	
 	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 	    ImageView bmImage;
 
@@ -289,6 +293,8 @@ public class ItemList extends Activity {
 	    protected void onPostExecute(Bitmap result) {
 	        bmImage.setImageBitmap(result);
 	    }
+	    
+	    
 	}
 
 }

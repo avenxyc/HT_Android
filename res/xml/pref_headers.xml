@@ -6,10 +6,8 @@
         android:fragment="com.aven.ht_android.UserSettingsActivity$GeneralPreferenceFragment"
         android:title="@string/pref_header_general" />
     <header
-        android:fragment="com.aven.ht_android.UserSettingsActivity$NotificationPreferenceFragment"
-        android:title="@string/pref_header_notifications" />
-    <header
-        android:fragment="com.aven.ht_android.UserSettingsActivity$DataSyncPreferenceFragment"
-        android:title="@string/pref_header_data_sync" />
+        android:title="@string/pref_header_about_us" />
+    
 
 </preference-headers>
+

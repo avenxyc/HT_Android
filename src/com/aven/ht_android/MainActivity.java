@@ -28,6 +28,10 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
+	
+	/**
+	 * Go to menu when users click "Settings"
+	 * */
 	@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -42,10 +46,15 @@ public class MainActivity extends Activity {
         return true;
     }
 
+	/*
+	 * Go to Barcode Scanner when uses clicks the camera button
+	 * */
 	public void launchCamera (View view){
 		 Intent intent = new Intent("com.google.zxing.client.android.SCAN");
 	     startActivityForResult(intent, 0);
 	}
+	
+
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {

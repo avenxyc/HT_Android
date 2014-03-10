@@ -47,6 +47,9 @@ public class CameraActivity extends Activity {
     TextView cname;
     TextView weight;
     ArrayList<HashMap<String, String>> oslist = new ArrayList<HashMap<String, String>>();
+    
+    
+    private static final int RESULT_SETTINGS = 1;
 	
 	JSONParser jParser = new JSONParser();
 
@@ -184,9 +187,16 @@ public class CameraActivity extends Activity {
 			//
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
+		case R.id.action_settings:
+            Intent i = new Intent(this, UserSettingsActivity.class);
+            startActivityForResult(i, RESULT_SETTINGS);
+            break;	
+			
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+
 	
 	
 	

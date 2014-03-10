@@ -35,5 +35,38 @@
     <string name="No_network_connection_title">Error</string>
     <string name="No_network_connection_content">There is no network avaiblable right now, please check your network settings and try again</string>
     
+    
+    <!-- User Settings -->
+    <string name="pref_description_change_region">You can change the default region here</string>
+    <string name="pref_title_change_region">Defaul region</string>
+    
+    <string-array name="pref_region_list_titles">
+        <item>Cape Breton</item>
+        <item>Eastern</item>
+        <item>HRM</item>
+        <item>Northern</item>
+        <item>South Shore</item>
+        <item>Valley</item>
+        <item>Western</item>
+    </string-array>
+    
+    <string-array name="pref_region_list_values">
+        <item>Cape Breton</item>
+        <item>Eastern</item>
+        <item>HRM</item>
+        <item>Northern</item>
+        <item>South Shore</item>
+        <item>Valley</item>
+        <item>Western</item>
+    </string-array>
+    
+    
+     <!-- settings for About us -->
+    <string name="pref_header_about_us">About us</string>
+    <string name="pref_title_author">Author</string>
+    <string name="pref_description_author">Yichuan Xu</string>
+    <string name="pref_title_version">Version</string>
+    <string name="pref_description_version">Alpha</string>
+    
 
 </resources>
