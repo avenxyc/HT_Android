@@ -57,10 +57,10 @@ public class ItemList extends Activity {
 		
 		// Get the message from the intent
 	    Intent intent = getIntent();
-	    final String message = intent.getStringExtra(CameraActivity.msg);
+	    final String upc = intent.getStringExtra(CameraActivity.msg);
 	    //final String region = intent.getStringExtra(CameraActivity.rgn);
 	    
-	    
+	    //Log.d("region", region);
 	    setContentView(R.layout.activity_item_list);
 		// Show the Up button in the action bar.
 		setupActionBar();
@@ -88,17 +88,17 @@ public class ItemList extends Activity {
 			
 			protected void onPostExecute(JSONArray json){
 				//Display the product image
-				String img_url = "http://falcon.acadiau.ca/~112574x/HT/pics/" + message + ".jpg";
+				String img_url = "http://falcon.acadiau.ca/~112574x/HT/pics/" + upc + ".jpg";
 				new DownloadImageTask((ImageView) findViewById(R.id.pimage))
 				            .execute(img_url);
-				
 				
 				
 				//Display item name and weight
 				try {
 					//Get the product name
-					JSONObject info = json.getJSONObject(1);
+					JSONObject info = json.getJSONObject(0);
 					String name = info.getString("product_name");
+					Log.d("product", name);
 					TextView tv_item_name = (TextView)findViewById(R.id.item_name);
 					tv_item_name.setText(name);
 					
@@ -196,7 +196,7 @@ public class ItemList extends Activity {
 		//Check network status
 		if(isNetworkAvailable(this))
 		{
-			new MyRetreiveFeedTask().execute(url, message);
+			new MyRetreiveFeedTask().execute(url, upc);
 		}else {
 			new AlertDialog.Builder(ItemList.this)
 		    .setTitle(R.string.No_network_connection_title)

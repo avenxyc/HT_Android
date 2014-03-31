@@ -5,8 +5,8 @@
     <!-- Main Activity -->
     <string name="app_name">Item Scanner</string>
     <string name="introduction_title">Instruction</string>
-    <string name="introduction_content">This application is used to scan barcode of a groccery item and 
-         you will get its recyclability. \nHope you will enjoy it and make a better world.</string>
+    <string name="introduction_content">This application is used to scan barcode of a groccery item return 
+        its recyclability. \n\nHope you will enjoy it and make better decision on purchasing products.</string>
     <string name="action_settings">Settings</string>
     
     <!-- Camera Activity -->

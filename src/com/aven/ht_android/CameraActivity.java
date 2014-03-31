@@ -66,7 +66,7 @@ public class CameraActivity extends Activity {
 	    final String message = intent.getStringExtra(MainActivity.result);
 	    
 	    
-	    //TODO
+	    // Save the UPC code
 		final Intent i = new Intent(getApplicationContext(), ItemList.class);
 		i.putExtra(msg, message);
 		
@@ -75,9 +75,6 @@ public class CameraActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		/*//Create a textview
-		TextView displayCode = (TextView)findViewById(R.id.viewtext);
-	    displayCode.setText("Please choose your region");	*/
 		
 		// Restore preferences
 	    SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
